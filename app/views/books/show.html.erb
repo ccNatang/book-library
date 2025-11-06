@@ -1,0 +1,18 @@
+<% if notice.present? %>
+  <p style="color: green;"><%= notice %></p>
+<% end %>
+
+<h1><%= @book.title %></h1>
+<p>
+  <strong>Author:</strong>
+  <%= @book.author.name if @book.author %>
+</p>
+
+<p>
+  <strong>Genre:</strong>
+  <%= @book.genre.name if @book.genre %>
+</p>
+
+<hr>
+<%= link_to "Edit this book", edit_book_path(@book) %>
+<%= link_to "Back to library", books_path %>

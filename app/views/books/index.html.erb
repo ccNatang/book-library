@@ -1,0 +1,28 @@
+<h1>My Personal Library<h1>
+
+<p>
+  <%= link_to "add a New Book", new_book_path %>
+</p>
+
+<div>
+  <h2>All Books</h2>
+  <% if @books.empty? %>
+    <p>You haven't added any books yet!</p>
+  <% else %>
+    <ul>
+      <% @books.each do |book| %>
+        <li>
+          <strong><%= book.title %></strong>
+
+          by <%= book.author.name if book.author %>
+          <em>(<%= book.genre.name if book.genre %>)</em>
+
+          <br>
+          <%= link_to "Show Details", book_path(book) %> |
+          <%= link_to "Edit", edit_book_path(book) %> |
+          <%= link_to "Delete", book_path(book), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" } %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
