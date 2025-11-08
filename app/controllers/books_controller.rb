@@ -39,12 +39,11 @@ class BooksController < ApplicationController
       @genres = Genre.all
       render :edit, status: :unprocessable_entity
     end
-
-    def destroy
-      @book = Book.find(params[:id])
-      @book.destroy
-      redirect_to books_path, status: :see_other, notice: "'#{@book.title}' was successfully deleted."
-    end
+  end
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to books_path, status: :see_other, notice: "'#{@book.title}' was successfully deleted."
   end
 
   private
