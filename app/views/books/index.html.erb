@@ -9,20 +9,32 @@
   <% if @books.empty? %>
     <p>You haven't added any books yet!</p>
   <% else %>
-    <ul>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Genre</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
       <% @books.each do |book| %>
-        <li>
-          <strong><%= book.title %></strong>
+        <tr>
+          <td><strong><%= book.title %></strong></td>
 
-          by <%= book.author.name if book.author %>
-          <em>(<%= book.genre.name if book.genre %>)</em>
+          <td><%= book.author.name if book.author %></td>
+          <td>(<%= book.genre.name if book.genre %>)</td>
 
-          <br>
+          <td>
           <%= link_to "Show Details", book_path(book) %> |
           <%= link_to "Edit", edit_book_path(book) %> |
           <%= link_to "Delete", book_path(book), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" } %>
-        </li>
+          </td>
+        </tr>
       <% end %>
-    </ul>
+      </tbody>
+    </table>
   <% end %>
 </div>
